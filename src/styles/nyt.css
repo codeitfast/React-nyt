@@ -26,7 +26,7 @@ html,body{
   top: 0vh;
   width: 80%;
   transform: translateX(10%);
-  height: 200vh;
+  height: 0px;
   z-index: 2;
 }
 
@@ -46,6 +46,13 @@ html,body{
   margin-right: 0;
 }
 
+.middle{
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateX(2.5%);
+  width: fit-content;
+  max-width: 600px;
+}
 .animation{
   opacity: var(--opacity);
 }
@@ -104,7 +111,7 @@ textarea{
 }
 .description{
 	color: #333333;
-	font-family: 15px/17px 'nyt-franklin', arial, helvetica, sans-serif;
+	font-family: 15px/17px nyt-franklin, arial, helvetica, sans-serif;
 	border-top: 1px solid rgba(0,0,0,.3);
 	border-bottom: 1px solid rgba(0,0,0,.3);
 	text-indent: 0px;
@@ -212,4 +219,14 @@ a:hover{
   padding-bottom: 40px;
   width: 90vw;
   max-width: 1050px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.source{
+  color: rgb(153,153,153);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 16.9px;
+  text-size-adjust: 100%;
 }

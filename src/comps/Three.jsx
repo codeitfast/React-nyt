@@ -4,8 +4,6 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { useRef, Suspense } from 'react'
 import { Html, useProgress, Environment, Loader } from '@react-three/drei'
 
-
-
 function Box({props, canvasHeight}){
   const ref = useRef()
 
@@ -34,18 +32,19 @@ function Car({props}){
   const ref = useRef()
   const car = useLoader(GLTFLoader, './src/comps/3d_models/car_lowpoly.glb')
   return(
-    <Suspense fallback={null}>
+    <Suspense fallback={<Loader />}>
       <primitive object={car.scene} scale={[.5,.5,.5]}/>
     </Suspense>
   )
 }
 
-export default function BX({width, height, text}){
+export default function BX({width, height, text, sw}){ //sw = 'switch'
   let allText = text.split('\n')
+  
   return(
-    <div className="scene" style={{height:(allText.length + 1)*100 + 'vh'}}>
+    <div className="scene" style={{height:(allText.length + 1.5)*100 + 'vh'}}>
     <div className="canvas-parent animation" style={{width:width, height:height, backgroundColor:'0xff0000'}}>
-    <Canvas shadowMap="true" dpr={[1, 2]}>
+    <Canvas shadows dpr={[1, 2]}>
       <ambientLight intensity={1} />
       <Environment preset="warehouse" />
         
@@ -56,10 +55,14 @@ export default function BX({width, height, text}){
     </div>
       <div className="scroller animation">
         {allText.map((n, m)=>{
-          if(m % 2 == 0){
-            return <div><p className="text left">{n}</p><div style={{height:'100vh'}}></div></div>
+          if(sw == true){
+            if(m % 2 == 0){
+              return <div><p className="text left">{n}</p><div style={{height:'100vh'}}></div></div>
+            }else{
+              return <div><p className="text right">{n}</p><div style={{height: '100vh'}}></div></div>
+            }
           }else{
-            return <div><p className="text right">{n}</p><div style={{height: '100vh'}}></div></div>
+            return <div><div style={{height:'50vh'}}></div><p className="text middle">{n}</p><div style={{height: '50vh'}}></div></div>
           }
         })}
       </div>
